@@ -403,11 +403,11 @@ ttq.page();
   <div class="topbar">
     <div class="track">
       <span>🚚 ENVÍO GRATIS + PAGO CONTRAENTREGA en toda Colombia 🇨🇴</span>
-      <span>🔥 53% OFF solo en <em class="mes-oferta">este mes</em> + regalo a tu elección</span>
+      <span>🔥 40% OFF solo en <em class="mes-oferta">este mes</em> + regalo a tu elección</span>
       <span>🛡️ GARANTÍA EXTENDIDA 3+ meses</span>
       <!-- copia idéntica para que el bucle sea continuo -->
       <span>🚚 ENVÍO GRATIS + PAGO CONTRAENTREGA en toda Colombia 🇨🇴</span>
-      <span>🔥 53% OFF solo en <em class="mes-oferta">este mes</em> + regalo a tu elección</span>
+      <span>🔥 40% OFF solo en <em class="mes-oferta">este mes</em> + regalo a tu elección</span>
       <span>🛡️ GARANTÍA EXTENDIDA 3+ meses</span>
     </div>
   </div>
@@ -436,9 +436,9 @@ ttq.page();
     <div class="precio-box">
       <div class="precio-left">
         <span class="precio-new" id="precio-new">$179.900</span>
-        <span class="precio-old" id="precio-old">Antes $382.800</span>
+        <span class="precio-old" id="precio-old">Antes $299.900</span>
       </div>
-      <span class="precio-off">-53%<small>solo <em class="mes-oferta">este mes</em></small></span>
+      <span class="precio-off">-40%<small>solo <em class="mes-oferta">este mes</em></small></span>
     </div>
 
     <!-- 2. CTA principal -->
@@ -643,7 +643,7 @@ ttq.page();
   <section class="sec" style="text-align:center;background:var(--acero2)">
     <div class="callout-blanco">
       <h2>Únete a las <em>+2.000 ventas</em> de este mes</h2>
-      <p>Aprovecha el 53% de descuento de <em class="mes-oferta">este mes</em> antes de que termine</p>
+      <p>Aprovecha el 40% de descuento de <em class="mes-oferta">este mes</em> antes de que termine</p>
     </div>
     <a href="#comprar" class="cta">Comprar ahora — <span class="px-actual">$179.900</span>
       <small>Envío gratis · Paga al recibir</small></a>
@@ -669,7 +669,7 @@ ttq.page();
   <!-- ========== BONO + CONTADOR ========== -->
   <section class="sec bono">
     <span class="tag">🔥 Oferta de <em class="mes-oferta">este mes</em></span>
-    <h2><span>53% de descuento</span> solo en <em class="mes-oferta">este mes</em></h2>
+    <h2><span>40% de descuento</span> solo en <em class="mes-oferta">este mes</em></h2>
     <p>Elige además tu regalo: par de medias o cordones extra. El envío es gratis si confirmas tu pedido antes de que termine el contador:</p>
     <div class="countdown" id="countdown">
       <div class="cd-box"><b id="cd-m">15</b><span>Min</span></div>
@@ -688,7 +688,7 @@ ttq.page();
 
       <div class="resumen">
         <div class="r-line"><span>Producto</span><span><b>CAT Reflectiva Punta de Seguridad</b></span></div>
-        <div class="r-line"><span>Descuento</span><span>53% OFF · <em class="mes-oferta">este mes</em></span></div>
+        <div class="r-line"><span>Descuento</span><span>40% OFF · <em class="mes-oferta">este mes</em></span></div>
         <div class="r-line"><span>Regalo</span><span id="res-regalo">🧦 Par de medias</span></div>
         <div class="r-total"><span>Total a pagar</span><span class="px-actual">$179.900</span></div>
       </div>
@@ -786,7 +786,7 @@ ttq.page();
 
   <!-- Barra fija móvil -->
   <div class="sticky-bar">
-    <div class="p"><s class="px-antes">$382.800</s><b class="px-actual">$179.900</b></div>
+    <div class="p"><s class="px-antes">$299.900</s><b class="px-actual">$179.900</b></div>
     <a href="#comprar" id="btn-sticky" onclick="return comprarAhora(event)">Comprar ahora</a>
   </div>
 
@@ -928,7 +928,7 @@ ttq.page();
     var sel = document.getElementById('sel-color'); if(sel) sel.value = color;
   }
 
-  // ---- Precio (con 53% de descuento este mes) ----
+  // ---- Precio (con 40% de descuento este mes) ----
   var PRECIO = 179900;
   function fmtPrecio(n){ return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
   function precioActual(){ return PRECIO; }
@@ -1011,7 +1011,7 @@ ttq.page();
     cdExpirado = true;
     var sec = document.querySelector('.bono'); if(sec) sec.classList.add('expirado');
     var lb = document.getElementById('cd-label');
-    if(lb) lb.textContent = '⛔ Se acabó el tiempo: ya perdiste el envío gratis. Aún puedes aprovechar el 53% de descuento de ' + mesOferta + '.';
+    if(lb) lb.textContent = '⛔ Se acabó el tiempo: ya perdiste el envío gratis. Aún puedes aprovechar el 40% de descuento de ' + mesOferta + '.';
   }
   function tick(){
     var diff = Math.max(0, cdFin - Date.now());
@@ -1079,7 +1079,7 @@ ttq.page();
       '🏙️ Ciudad: ' + d.ciudad + '\n' +
       '🏠 Dirección: ' + d.direccion +
       (d.notas ? ('\n📝 Notas: ' + d.notas) : '') +
-      '\n🔥 Oferta: 53% OFF de ' + mesOferta +
+      '\n🔥 Oferta: 40% OFF de ' + mesOferta +
       '\n💰 Total: ' + fmtPrecio(precioActual()) + ' (pago contraentrega)';
   }
 
@@ -1148,7 +1148,7 @@ ttq.page();
         direccion: datos.direccion,
         observaciones: (datos.notas ? datos.notas + ' | ' : '') + 'Regalo: ' + datos.regalo,
         regalo: datos.regalo,
-        oferta: '53% OFF ' + mesOferta,
+        oferta: '40% OFF ' + mesOferta,
         pedido: [{ color: datos.color, talla: datos.talla, cantidad: 1, precio: precioActual() }],
         total: precioActual(),
         pedidoId: datos.id

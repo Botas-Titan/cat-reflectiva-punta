@@ -1,6 +1,6 @@
 # CAT Reflectiva Punta de Seguridad
 
-Landing de un solo producto (misma base que cat-campero y velez-thomas). Precio $179.900 (-53%, antes $382.800), una sola variante, tallas 37 a 44.
+Landing de un solo producto (misma base que cat-campero y velez-thomas). Precio $179.900 (-40%, antes $299.900), una sola variante, tallas 37 a 44.
 
 ## Fotos (carpeta `img/`, 6 numeradas 0 a 5, formato jpg)
 `reflectiva-punta-unico-0.jpg` … `reflectiva-punta-unico-5.jpg`
