@@ -132,7 +132,7 @@ ttq.page();
   .color-wrap{margin:4px 0}
   .color-title{font-size:.78rem;color:var(--gris);margin-bottom:5px;text-align:left}
   .color-title b{color:var(--texto)}
-  .colores{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .colores{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
   .color-op{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;
     border:2px solid var(--linea);border-radius:10px;padding:6px 4px;transition:.2s;background:var(--acero2);color:var(--texto)}
   .color-op.act{border-color:var(--amarillo);background:rgba(200,240,0,.10)}
@@ -141,7 +141,9 @@ ttq.page();
   .sw-oro{background:linear-gradient(135deg,#e2b54a,#a7771b)}
   .sw-cafe{background:linear-gradient(135deg,#6b4428,#3c2414)}
   .sw-avellana{background:linear-gradient(135deg,#b88a5e,#7f5733)}
-  .color-op span{font-size:.74rem;font-weight:600}
+  .sw-gris{background:linear-gradient(135deg,#a3a8ad,#5b6065)}
+  .sw-azul{background:linear-gradient(135deg,#3366b3,#142f5c)}
+  .color-op span{font-size:.7rem;font-weight:600}
 
   /* Precio */
   .precio-box{margin:4px 0;background:var(--acero2);border:1px solid var(--linea);
@@ -423,7 +425,7 @@ ttq.page();
       <div class="foto-ph">
         <div class="ic">🥾</div>
         <div>FOTO DEL PRODUCTO</div>
-        <small id="foto-ph-nombre">Sube img/reflectiva-punta-unico-0.jpg</small>
+        <small id="foto-ph-nombre">Sube img/reflectiva-punta-negra-0.jpg</small>
       </div>
       <span class="zoom-tip" id="swipe-hint">👉 Desliza</span>
     </div>
@@ -439,6 +441,18 @@ ttq.page();
         <span class="precio-old" id="precio-old">Antes $299.900</span>
       </div>
       <span class="precio-off">-40%<small>solo <em class="mes-oferta">este mes</em></small></span>
+    </div>
+
+    <!-- Selector de color -->
+    <div class="color-wrap">
+      <div class="color-title">Color: <b id="color-name">Negra</b></div>
+      <div class="colores">
+        <div class="color-op act" data-color="Negra" onclick="setColor(this)"><div class="swatch sw-negra"></div><span>Negra</span></div>
+        <div class="color-op" data-color="Oro" onclick="setColor(this)"><div class="swatch sw-oro"></div><span>Oro</span></div>
+        <div class="color-op" data-color="Gris" onclick="setColor(this)"><div class="swatch sw-gris"></div><span>Gris</span></div>
+        <div class="color-op" data-color="Azul" onclick="setColor(this)"><div class="swatch sw-azul"></div><span>Azul</span></div>
+        <div class="color-op" data-color="Café" onclick="setColor(this)"><div class="swatch sw-cafe"></div><span>Café</span></div>
+      </div>
     </div>
 
     <!-- 2. CTA principal -->
@@ -688,6 +702,7 @@ ttq.page();
 
       <div class="resumen">
         <div class="r-line"><span>Producto</span><span><b>CAT Reflectiva Punta de Seguridad</b></span></div>
+        <div class="r-line"><span>Color</span><span id="res-color">Negra</span></div>
         <div class="r-line"><span>Descuento</span><span>40% OFF · <em class="mes-oferta">este mes</em></span></div>
         <div class="r-line"><span>Regalo</span><span id="res-regalo">🧦 Par de medias</span></div>
         <div class="r-total"><span>Total a pagar</span><span class="px-actual">$179.900</span></div>
@@ -698,10 +713,16 @@ ttq.page();
         <input type="text" name="nombre" required placeholder="Tu nombre y apellido">
       </div>
 
-      <div class="row2" style="grid-template-columns:1fr">
-        <div class="field" hidden>
-          <label>Color</label>
-          <select name="color" id="sel-color"><option value="Unica">Única</option></select>
+      <div class="row2">
+        <div class="field">
+          <label>Color <span class="req">*</span></label>
+          <select name="color" id="sel-color" required onchange="syncColor()">
+            <option value="Negra">Negra</option>
+            <option value="Oro">Oro</option>
+            <option value="Gris">Gris</option>
+            <option value="Azul">Azul</option>
+            <option value="Café">Café</option>
+          </select>
         </div>
         <div class="field">
           <label>Talla <span class="req">*</span></label>
@@ -827,13 +848,13 @@ ttq.page();
   //    Fotos en img/reflectiva-punta-<color>-<0..5>.jpg  (color: negra, oro, cafe, avellana).
   //    La foto -0 es la portada. Las que no existan se omiten solas.
   // ============================================================
-  var ARCHIVO_COLOR = { 'Unica':'unico' };
+  var ARCHIVO_COLOR = { 'Negra':'negra', 'Oro':'oro', 'Gris':'gris', 'Azul':'azul', 'Café':'cafe' };
   var GALERIA = {};
   Object.keys(ARCHIVO_COLOR).forEach(function(c){
     GALERIA[c] = [0,1,2,3,4,5].map(function(n){ return 'img/reflectiva-punta-' + ARCHIVO_COLOR[c] + '-' + n + '.jpg'; });
   });
 
-  var colorActual = 'Unica';
+  var colorActual = 'Negra';
   var galeriaActual = []; // fotos que sí cargaron para el color actual, en orden
   var galeriaIndice = 0;
   var galeriaTocada = false; // si el cliente ya movió la galería (para no saltarle la foto al cargar otras)
@@ -935,7 +956,7 @@ ttq.page();
   function setColor(el){ aplicarColor(el.dataset.color); }
   function syncColor(){ aplicarColor(document.getElementById('sel-color').value); }
 
-  aplicarColor('Unica');
+  aplicarColor('Negra');
 
   // ---- Deslizar las fotos: la foto sigue al dedo (o al mouse) y se acomoda al soltar ----
   (function(){
@@ -1071,7 +1092,7 @@ ttq.page();
   function mensajeWhatsApp(d){
     return '🛒 *NUEVO PEDIDO — CAT Reflectiva Punta de Seguridad*\n\n' +
       '👤 Nombre: ' + d.nombre + '\n' +
-      
+      '🥾 Color: ' + d.color + '\n' +
       '📏 Talla: ' + d.talla + '\n' +
       '🎁 Regalo: ' + d.regalo + '\n' +
       '📱 Celular: ' + d.celular + '\n' +
