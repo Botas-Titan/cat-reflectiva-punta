@@ -7,7 +7,7 @@
  * Mientras MP_ENDPOINT esté vacío, el botón de Mercado Pago permanece oculto y
  * todo sigue funcionando solo con contraentrega por WhatsApp.
  */
-var MP_ENDPOINT = '';   // ← URL de la aplicación web de Apps Script (termina en /exec)
+var MP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxUPRSHhFDQF8h3yBGBURpVyx_ulSbgJqX4snee_duV7rfFVIXHcuND2OigjLkftljV/exec';   // ← URL de la aplicación web de Apps Script (termina en /exec)
 
 (function () {
   var PRODUCTO = document.documentElement.getAttribute('data-mp') || '';
