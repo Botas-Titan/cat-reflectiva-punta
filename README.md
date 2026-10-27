@@ -16,7 +16,10 @@ Marco vertical **3:4**, ancho completo (520 px máx. en computador, ~375 px en c
 
 Opcional: `img/uso-1..4.jpg` y `video/reflectiva-punta.mp4` (vertical 9:16, sección aparte más abajo).
 
-## Pendientes
-- Fotos de cada color (5 por color).
-- Píxel Meta: bloque comentado en `<head>` de `index.html`.
-- WhatsApp: `WA_NUMERO` en `index.html` (hoy 573224146909).
+## Estado
+Fotos (5 por color), videos, fotos de uso, Mercado Pago y botón flotante de WhatsApp: listos. WhatsApp: `573224146909`.
+
+## Único pendiente: conectar el píxel de Meta
+1. `index.html` (en el `<head>`, bloque "META PIXEL"): cambia `TU_PIXEL_ID_AQUI` por tu ID y quita el `<!--` del inicio y el `-->` del final del bloque. Dispara PageView y, al confirmar el pedido, Lead.
+2. `gracias.html` (bloque "META"): igual, cambia `TU_PIXEL_ID_AQUI` por tu ID y descomenta. Dispara Purchase por $179.900.
+3. Opcional: bloques de TikTok en los mismos sitios.
