@@ -8,12 +8,37 @@
 <!-- ============================================================= -->
 <!-- 🔶 PÍXEL — dispara aquí la CONVERSIÓN (Purchase / CompletePayment)-->
 <!-- ============================================================= -->
-<!-- META:
+<!-- META: quita este comentario y pon tu ID cuando conectes el píxel (también en index.html)
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','TU_PIXEL_ID_AQUI'); fbq('track','PageView'); fbq('track','Purchase',{value:179900,currency:'COP'});
+fbq('init','TU_PIXEL_ID_AQUI');
+fbq('track','PageView');
 </script>
 === -->
+<script>
+// ===== COMPRA (Purchase) =====
+// Solo se cuenta si: (a) la persona llenó el formulario, (b) el pedido es de
+// hace menos de 1 hora y (c) ese pedido no se ha contado antes.
+// Mientras el píxel no esté conectado (window.fbq no existe) no hace nada.
+(function(){
+  try{
+    if(!window.fbq) return;
+    if(location.search.indexOf('ver=politicas') > -1) return;   // solo viene a leer
+    if(location.search.indexOf('ref=') > -1) return;   // pago con Mercado Pago: se cuenta al verificarlo (mp.js)
+    var crudo = localStorage.getItem('pedidoReflectivaPunta');
+    if(!crudo) return;
+    var pedido = JSON.parse(crudo);
+    if(!pedido || !pedido.id || !pedido.ts) return;
+    if(Date.now() - pedido.ts > 3600000) return;
+    var contados = (localStorage.getItem('pedidosContados') || '').split(',');
+    if(contados.indexOf(pedido.id) > -1) return;
+    contados.push(pedido.id);
+    localStorage.setItem('pedidosContados', contados.slice(-50).join(','));
+    fbq('track','Purchase', {content_name:'CAT Reflectiva Punta de Seguridad', content_type:'product', contents:[{id:'cat-reflectiva-punta', quantity:1}],
+                             num_items:1, value:179900, currency:'COP'}, {eventID: pedido.id});
+  }catch(e){}
+})();
+</script>
 <!-- TIKTOK:  ...ttq.load('TU_ID'); ttq.track('CompletePayment',{value:179900,currency:'COP'}); -->
 
 <style>
